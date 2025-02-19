@@ -1,0 +1,162 @@
+/* Grundlegendes */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    /* Darkmode */
+    color: #fff;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #1e1e1e;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+#sidebar button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #3949ab;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Cytoscape Container */
+#cy {
+    position: absolute;
+    left: 200px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0d47a1;
+    /* Blau, dezent */
+}
+
+/* Legende */
+#legend {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(33, 33, 33, 0.9);
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    max-width: 300px;
+    font-size: 14px;
+    z-index: 1100;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    width: 300px;
+    color: #fff;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal label {
+    display: block;
+    margin-top: 10px;
+}
+
+.modal input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.modal-buttons button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3949ab;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Node Overlay (als HTML über dem Cytoscape-Canvas) */
+.node-overlay {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #790c0c;
+    /* wird via JS angepasst */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Damit der Overlay-Container selbst keine Events blockt: */
+    pointer-events: none;
+}
+
+.node-overlay * {
+    /* Die enthaltenen Elemente (Buttons, Text) sollen Events erhalten */
+    pointer-events: auto;
+}
+
+.node-title {
+    font-size: 1em;
+    margin-bottom: 5px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.node-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.node-buttons button {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3949ab;
+    color: #fff;
+    font-size: 0.8em;
+    cursor: pointer;
+}

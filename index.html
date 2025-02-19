@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interaktiver Graph</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Cytoscape.js und dagre -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.21.1/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.2.2/cytoscape-dagre.min.js"></script>
+    <script>
+        cytoscape.use(cytoscapeDagre);
+    </script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <button id="importConfigBtn">Config importieren</button>
+        <button id="exportConfigBtn">Config exportieren</button>
+        <!-- Neuer Button für das Hinzufügen einer Kante -->
+        <button id="addEdgeBtn">Kante hinzufügen</button>
+        <input type="file" id="importConfigInput" accept=".json" style="display:none;">
+    </div>
+
+    <!-- Cytoscape Container -->
+    <div id="cy"></div>
+    <!-- Legende -->
+    <div id="legend">
+        <h3>Legende / Anleitung</h3>
+        <ul>
+            <li>Langer rechter Klick (1 s) und Ziehen: Verbindung erstellen</li>
+            <li>Rechter Klick auf einen Knoten: Knoten bearbeiten</li>
+            <li><strong>Plus‑Button</strong>: Neuen Knoten erstellen (verbunden)</li>
+            <li><strong>Checkbox</strong>: Zustand umschalten (grün = abgeschlossen, rot = nicht abgeschlossen)</li>
+            <li><strong>Link‑Button</strong>: Öffnet den hinterlegten Link in einem neuen Tab</li>
+            <li>Mausrad: Zoom</li>
+            <li>Ziehe auf leeren Bereichen: Pannen</li>
+        </ul>
+    </div>
+    <!-- Modal (wird sowohl für das Bearbeiten als auch für das Erstellen genutzt) -->
+    <div id="nodeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="modalClose">&times;</span>
+            <h2 id="modalTitle">Node bearbeiten</h2>
+            <form id="nodeForm">
+                <label for="nodeTopic">Thema:</label>
+                <input type="text" id="nodeTopic" name="nodeTopic" required>
+                <label for="nodeLink">Link (optional):</label>
+                <input type="text" id="nodeLink" name="nodeLink">
+                <div class="modal-buttons">
+                    <button type="submit" id="modalSave">Speichern</button>
+                    <button type="button" id="modalCancel">Abbrechen</button>
+                </div>
+                <!-- Versteckte Felder zur Unterscheidung -->
+                <input type="hidden" id="modalNodeId">
+                <input type="hidden" id="modalParentId">
+                <input type="hidden" id="modalMode" value="edit">
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
